@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'core_bootstrap/bootstrap.min.css') }}">
+  <title>Farmacias Amixes</title>
+
+  <style>
+     .fondo {
+            background-image: url("{{ url_for('static', filename='img/fondo.jpg') }}");
+        } 
+  </style>
+</head>
+
+<body class="bg-primary-subtle">
+  <section class="h-100 gradient-form rounded-3 ">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+
+                  <div class="text-center">
+                    <a href="/">
+                      <img src=" {{url_for('static', filename = 'img/Logo.png')}}" style="width: 90px; height: 90px;"
+                        alt="logo">
+                    </a>
+                    <h4 class="mt-1 mb-5 pb-1">! Inicia sesion en <br>Farmacias Amixes ¡</h4>
+                  </div>
+
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                  <div id="flash-messages">
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                      {{ message|safe }}
+                    </div>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  {% endwith %}
+
+                  <!-- INICIO FORMULARIO -->
+                  <form action="/validar" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="correo_login">Correo electronico</label>
+                      <input type="email" id="correo_login" class="form-control" placeholder="Ingrese su correo"
+                        name="correo" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="pass_login">Contraseña</label>
+                      <input type="password" id="pass_login" class="form-control" placeholder="Ingrese su contraseña"
+                        name="contraseña" />
+                    </div>
+
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Iniciar
+                        sesion</button>
+                      <!-- <a class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                            href="/">Iniciar sesion</a> -->
+                      <!-- <a class="text-muted" href="#!">Olvide la contraseña</a> -->
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">¿No tiene cuenta?</p>
+                      <!-- <button type="button" class="btn btn-outline-danger me-2">Crear cuenta nueva</button> -->
+                      <a href="/cliente?ir=registro">Crear una cuenta</a>
+
+                    </div>
+
+                  </form>
+                  <!-- FIN FORMULARIO -->
+                  <!-- <button type="button" style="margin-left: 15px;" class="btn btn-info position-absolute top-0 start-0 mt-3 ml-3">Info</button> -->
+                  <a href="/" style="margin-left: 15px;"
+                    class="btn btn-info position-absolute top-0 start-0 mt-3 ml-3">Atrás</a>
+                </div>
+              </div>
+
+              <div class="col-lg-6 d-flex align-items-center rounded-end fondo ">
+                <div class="px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="text-center mb-4">Farmacias Amixes</h4>
+                  <p class="medium mb-0 " style="text-align: justify;">Nos esforzamos por ofrecer productos y servicios
+                    de la más
+                    alta calidad, cumpliendo con los estándares regulatorios más exigentes.
+                    <br>
+                    Nuestra misión en Farmcias Amixes es proporcionar soluciones farmacéuticas avanzadas y
+                    accesibles para abordar las necesidades médicas no cubiertas y mejorar la calidad de
+                    vida de los pacientes en todo el mundo.
+
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

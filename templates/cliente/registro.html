@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'core_bootstrap/bootstrap.min.css') }}">
+    <title>Farmacias Amixes</title>
+</head>
+<body class="bg-primary-subtle">
+    <section class="h-100 gradient-form rounded-3">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-8">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                        
+                        <div class="position-relative">
+                                <!-- Botón en la parte superior izquierda -->
+                                <a href="/" class="btn btn-info position-absolute top-0 start-0 m-3">Atrás</a>
+                            </div>
+                            <div class="card-body p-md-5 mx-md-4">
+    
+                                <div class="text-center">
+                                    <a href="/">
+                                        <img src=" {{url_for('static', filename = 'img/Logo.png')}}"
+                                            style="width: 90px; height: 90px;" alt="Logo">
+                                    </a>
+                                    <h4 class="mt-1 mb-5 pb-1">! Registrate en <br>Farmacias Amixes ¡</h4>
+                                </div>
+                                <!-- INICIO DEL FORMULARIO -->
+                                <!-- <form class="needs-validation" action="<?= base_url('/'); ?>" method="post" enctype="multipart/form-data" novalidate> -->
+                                <form class="needs-validation" action="/registrar?param=False" method="POST">
+                                    <div class="row g-3">
+                                        <!-- NOMBRE -->
+                                        <div class="col-sm-4">
+                                            <label for="Nombre" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="Nombre"
+                                                placeholder="Ingrese su nombre" name="nombre" required>
+                                            <div class="invalid-feedback">
+                                                Campo requerido
+                                            </div>
+                                        </div>
+                                        <!-- APELLIDOS -->
+                                        <div class="col-sm-8">
+                                            <label for="Apellido" class="form-label">Apellido</label>
+                                            <input type="text" class="form-control" id="Apellido"
+                                                placeholder="Ingrese su apellido" name="apellidos" required>
+                                            <div class="invalid-feedback">
+                                                Campo requerido
+                                            </div>
+                                        </div>
+                                        <!-- INICIO TIPO DE USUARIO -->
+                                        <!-- FIN TIPO DE USUARIO -->
+                                        <!-- INICIO PAIS -->
+                                        <div class="col-sm-2">
+                                            <label for="Pais" class="form-label">Pais</label>
+                                            <input type="text" class="form-control" id="Pais" placeholder="Pais"
+                                                name="pais" required>
+                                            <div class="invalid-feedback">
+                                                Campo requerido
+                                            </div>
+                                        </div>
+                                        <!-- FIN PAIS -->
+                                        <!-- INICIO ESTADO -->
+                                        <div class="col-sm-2">
+                                            <label for="Estado" class="form-label">Estado</label>
+                                            <input type="text" class="form-control" id="Estado" placeholder="Estado"
+                                                name="estado" required>
+                                            <div class="invalid-feedback">
+                                                Campo requerido
+                                            </div>
+                                        </div>
+                                        <!-- FIN ESTADO -->
+                                        <!-- INICIO DIRECCION -->
+                                        <div class="col-sm-8">
+                                            <label for="Direccion" class="form-label">Direccion</label>
+                                            <input type="text" class="form-control" id="Direccion"
+                                                placeholder="Calle/Avenida No." name="direccion" required>
+                                            <div class="invalid-feedback">
+                                                Please enter your shipping address.
+                                            </div>
+                                        </div>
+                                        <!-- FIN DIRECCION -->
+                                        <!-- INICIO CORREO -->
+                                        <div class="col-sm-4">
+                                            <label for="Correo" class="form-label">Correo</label>
+                                            <input type="email" class="form-control" id="Correo"
+                                                placeholder="correo@ejemplo.com" name="correo" required>
+                                            <div class="invalid-feedback">
+                                                Ingresa un correo valido
+                                            </div>
+                                        </div>
+                                        <!-- FIN CORREO -->
+                                        <!-- INICIO CONTRASEÑA -->
+                                        <div class="col-sm-8">
+                                            <label for="password" class="form-label">Contraseña:</label>
+                                            <input type="password" class="form-control" id="password" name="contraseña"
+                                                placeholder="Introduce tu contraseña" required>
+                                                <div class="invalid-feedback">
+                                                    Ingresa la contraseña
+                                                </div>
+                                            
+                                        </div>
+                                        <!-- FIN CONTRASEÑA -->
+    
+                                        <input type="submit" class="w-80 btn btn-primary btn-lg" value="Registrar">
+    
+                                    </div>
+    
+                                    <!-- <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="inicio()">Continue to checkout</button> -->
+    
+                                </form>
+                                <!-- FIN DEL FORMULARIO -->
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- INICIO SCRIPTS -->
+    <script src="{{ url_for('static', filename = 'core_bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'core_bootstrap/checkout.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'core_bootstrap/snippets.js') }}"></script>
+    <!-- FIN SCRIPTS -->
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+
+<form action="" method="post">
+
+    <div class="container">
+        <div class="row ">
+            
+            <div class="col text-center pb-3">
+                <a class="" href="/admin?ir=agregarProducto">
+                    <button type="button" class="btn btn-warning" >Agregar productos</button>
+                </a>
+            </div>
+            <div class="col text-center pb-3">
+                <a class="" href="/admin?ir=agregarCategoria">
+                    <button type="button" class="btn btn-warning" >Agregar categorias</button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead><!-- CABECERA -->
+        <tr><!-- DEFINIR FILA -->
+            <th scope="col">Id</th><!-- DE CABECERA -->
+            <th scope="col">Producto</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad en existencia</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for m in mostrar %}
+        <tr>
+            
+            <td>{{ m[0] }}</td><!-- DEFINIR CELDA -->
+            <td>{{ m[2] }}</td>
+            <td>{{ m[3] }}</td>
+            <td>{{ m[4] }}</td>
+            <td>{{ m[5] }}</td>
+            <td>{{ m[1] }}</td>
+            <td>
+                <img src="{{ url_for('static', filename='productosIMG/' + m[6]) }}" width="60px" height="60px" alt="">
+            </td>
+            <td>
+                <form action="/adminProductos?tipo=editar&id={{m[0]}}" method="POST">
+                    <button type="submit" class="btn btn-primary ">Editar</button>
+                </form>
+            </td>
+            <td>
+                <form action="/adminProductos?tipo=eliminar&id={{m[0]}}" method="POST">
+                    <button class="btn btn-danger ">Eliminar</button>
+                </form>
+            </td>
+
+            
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+
+</table>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+
+<div class="container">
+    <div class="row justify-content-center mb-3">
+        <form class="col-sm-8 col-md-6" action="/busqueda_cliente" method="POST">
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder="Nombre del cliente" name="nombre_cliente" id="nombre_cliente">
+                <div class="input-group-append">
+                    <button class="btn btn-warning" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div class="col-sm-4 col-md-3 text-right">
+            <a href="/admin?ir=registrar" class="btn btn-primary">Agregar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table">
+    <thead><!-- CABECERA -->
+        <tr><!-- DEFINIR FILA -->
+            <th scope="col">Cliente</th><!-- DE CABECERA -->
+            <th scope="col">Direccion</th>
+
+            <th scope="col">Estado</th>
+            <th scope="col">Pais</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for c in clientes %}
+        <tr>
+            <td>{{ c[1]}} {{ c[2] }}</td><!-- DEFINIR CELDA -->
+            <td>{{ c[6] }}</td>
+            <td>{{ c[8] }}</td>
+            <td>{{ c[9] }}</td>
+
+            <td>
+                <a class="btn btn-primary" href="/admin?ir=actualizarUsuario&&id={{c[0]}}">Editar</a>
+            </td>
+            <td>
+                <a class="btn btn-danger " href="/admin?ir=eliminarUsuario&&id={{c[0]}}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+{% endblock %}

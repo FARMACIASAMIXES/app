@@ -1,0 +1,40 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+
+
+<table class="table">
+    <thead><!-- CABECERA -->
+        <tr><!-- DEFINIR FILA -->
+            <th scope="col">Id Pedido</th><!-- DE CABECERA -->
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Precio total</th>
+            <th scope="col">Direccion Enviada</th>
+            <th scope="col">Movimiento</th>
+            <th scope="col">Entregado</th>
+            <th scope="col">Cancelar</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for p in pedidos %}
+        <tr>
+            <td>{{ p[0] }}</td><!-- DEFINIR CELDA -->
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td>{{ p[4] }}</td>
+            <td>{{ p[5] }}</td>
+            <td>
+                <a href="/pedido?id={{p[0]}}&des=entregado"  class="btn btn-primary ">Entregado</a>
+            </td>
+            <td>
+                <a href="/pedido?id={{p[0]}}&des=cancelar" class="btn btn-danger ">Cancelar</a>
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+
+</table>
+{% endblock %}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- INICIO HEAD -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'core_bootstrap/bootstrap.min.css') }}">
+    
+    <title>Farmacias Amixes</title>
+    <style>
+        .alert {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .alert.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<!-- FIN HEAD -->
+
+<body class="bg-primary-subtle">
+    <!-- INICIO HEADER -->
+    <header class="bg-info p-3 mb-3 border-bottom">
+        <div class="container">
+            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+
+                <img src="{{ url_for('static', filename = 'img/Logo.png') }}" alt="Logo" width="150px" height="150px">
+                <h1 class="">FARMACIAS <br> AMIXES</h1>
+            </a>
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+                    <li><a id="irInicio" href="/" class="nav-link px-2 link-body-emphasis">Inicio</a>
+                    </li>
+                    {% block categorias %}
+                    {% endblock %}
+                    
+
+                    <li><a href="/cliente?ir=nosotros" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
+                    <li><a href="/cliente?ir=carrito" class="nav-link px-2 link-body-emphasis position-relative">Carrito {% block cuenta_productos %} {% endblock %}</a></li>
+                    {% block pedidos %}
+                    {% endblock %}
+                </ul>
+
+                <form class="row gx-1 align-items-center" action="/buscar_producto" method="POST">
+                    <div class="col">
+
+                        <input type="search" class="form-control mb-lg-0" id="buscarProducto" name="buscarProducto" placeholder="Buscar...">
+
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                        <!-- <a class="btn btn-primary" >Buscar</a> -->
+                    </div>
+
+
+                </form>
+
+                {% block sesion %}
+                {% endblock %}
+            </div>
+        </div>
+    </header>
+    <!-- FIN HEADER -->
+
+    <!-- INICIO CONTENDIO -->
+    <main>
+
+        <!-- INICIO CUERPO CONTENIDO -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- INICIO SECCION 1 -->
+                <div class="col-md-2 bg-light bg-primary-subtle">
+                    <a href="https://codeigniter.com/user_guide/intro/index.html" target="_blank" title="link">
+                        <img src="{{ url_for('static', filename = 'img/P2.webp') }}" alt=""
+                            style="width: 100%; height: 100%;">
+                    </a>
+                </div>
+                <!-- FIN SECCION 1 -->
+                <!-- INICIO Contenido principal en el medio -->
+                <div class="col-md-8">
+                    {% block cambio %}
+                    {% endblock %}
+                </div>
+                <!-- FIN Contenido principal en el medio -->
+
+                <!-- INICIO SECCION 2 -->
+                <div class="col-md-2 bg-light bg-primary-subtle">
+                    <a href="https://codeigniter.com/user_guide/intro/index.html" target="_blank" title="link">
+                        <img src="{{ url_for('static', filename = 'img/P2.webp') }}" alt=""
+                            style="width: 100%; height: 100%;">
+                    </a>
+                </div>
+                <!-- FIN SECCION 2 -->
+            </div>
+        </div>
+        <!-- FIN CUERPO CONTENIDO -->
+    </main>
+    <!-- FIN CONTENIDO -->
+
+    <!-- INICIO FOOTER -->
+    <div class="container">
+        <hr class="my-4">
+
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Inicio</a>
+                </li>
+                <li class="nav-item"><a href="/cliente?ir=nosotros"
+                        class="nav-link px-2 text-body-secondary">Nosotros</a></li>
+
+                <li class="nav-item"><a href="https://www.facebook.com/" target="_blank"
+                        class="nav-link px-2 text-body-secondary">Facebook</a>
+                </li>
+                <li class="nav-item"><a href="https://twitter.com/?lang=es" target="_blank"
+                        class="nav-link px-2 text-body-secondary">X
+                        (twitter)</a></li>
+
+
+                <li class="nav-item"><a href="tel:+1234567890" class="nav-link px-2 text-body-secondary">Teléfono: +52
+                        (55) 456-7890</a></li>
+                <li class="nav-item"><a href="mailto:farmaciasamixes@gmail.com"
+                        class="nav-link px-2 text-body-secondary">farmaciasamixes@gmail.com</a></li>
+
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2024 <strong>Farmacias Amixes</strong>, Inc <br>Farmacias
+                Amixes S.A. de C.V.<br>Av. del Bosque No. 1234, Col. El Pinar<br>Ciudad de México,
+                CDMX, México</p>
+
+
+
+
+        </footer>
+    </div>
+    <!-- INICIO FOOTER -->
+
+    <!-- INICIO SCRIPTS -->
+    <script src="{{ url_for('static', filename = 'core_bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'core_bootstrap/checkout.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'core_bootstrap/snippets.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Mostrar alertas con transición suave
+            let flashMessages = document.querySelectorAll('#flash-messages .alert');
+            flashMessages.forEach((message) => {
+                message.classList.add('show');
+            });
+
+            // Ocultar alertas después de 3 segundos con transición suave
+            setTimeout(() => {
+                flashMessages.forEach((message) => {
+                    message.classList.remove('show');
+                    message.addEventListener('transitionend', () => {
+                        message.style.display = 'none';
+                    });
+                });
+            }, 6000); 
+        });
+    </script>
+    <!-- FIN SCRIPTS -->
+
+
+
+    <!-- FIN FOOTER -->
+
+</body>
+
+</html>

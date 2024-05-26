@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block pedidos %}
+{% if log == True %}
+<li><a href="/cliente?ir=pedidos" class="nav-link px-2 link-body-emphasis">Pedidos</a></li>
+{% else %}
+
+{% endif %}
+{% endblock %}
+
+{% block sesion %}
+{% if log == False %}
+<div class="text-center ms-3">
+    <a href="/cliente?ir=login" class="btn btn-light">Iniciar Sesion</a>
+</div>
+{% else %}
+<div class="text-center ms-3">
+    <a href="/logout" class="btn btn-light">Cerrar Sesion</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block cuenta_productos %}
+{% if numero_productos %}
+<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{numero_productos}}
+    <span class="visually-hidden">unread messages</span></span>
+{% else %}
+{% endif %}
+{% endblock %}
+
+{% block categorias %}
+<li class="nav-item dropdown">
+    <a class="nav-link px-2 link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+        aria-expanded="false">Categorias</a>
+    <ul class="dropdown-menu">
+        <li>
+            {% for cat in data %}
+
+            <a class='dropdown-item' href="">{{ cat[1] }}</a>
+
+            {% endfor %}
+        </li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block cambio %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div id="flash-messages">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- INICIO CARRITO -->
+
+<table class="table">
+    <thead><!-- CABECERA -->
+        <tr><!-- DEFINIR FILA -->
+            <!-- <th scope="col">Id</th> --><!-- DE CABECERA -->
+            <th scope="col">Nombre</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Total</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% if (datos_productos)%}
+        {% for key, producto in datos_productos.items() %}
+        <tr>
+
+            <td>{{ producto['nombre'] }}</td>
+            <td>{{ producto['cantidad']}}</td>
+            <td>${{ producto['precio'] }}</td>
+            <td>${{ producto['precio'] * producto['cantidad']}}</td>
+            <td><a href="{{ url_for('eliminar_carrito', producto_id = key ) }}" class="">Eliminar producto</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        {% endif %}
+        <tr>
+            <td>Total</td>
+            <td colspan="2"></td>
+            <td>${{suma}}</td>
+        </tr>
+    </tbody>
+
+</table>
+<!-- <div class="ow gy-3 align-items-center"> -->
+<div class=" text-center">
+    <a class="btn btn-primary mt-4 mb-3 " href="{{ url_for('realizar_compra') }}" id="liveAlertBtn">Proceder pago</a>
+</div>
+<!-- FIN CARRITO -->
+<!-- INICIO PAGO -->
+
+<!-- FIN PAGO -->
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+{% for m in producto %}
+<div class="container">
+    <h3 class="mt-2">Actualizar Producto</h3>
+    <form action="/actualizarp?id={{m[0]}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            
+            <label for="Edad" class="form-label mt-3">Categoría</label>
+            <select class="form-control" id="Edad" name="categoriap">
+                <option value="" disabled selected hidden>Ingresa su tipo</option>
+                {% for c in data %}
+                
+                <option value="{{ c[0] }}">{{ c[1] }}</option>
+                
+                {% endfor %}
+
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="nombre">Nombre del Producto:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ m[2] }}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="descripcion">Descripción:</label>
+            <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required>{{m[3]}}</textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="precio">Precio:</label>
+            <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" value="{{m[4]}}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" name="cantidad" min="0" value="{{m[5]}}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="imagen">Imagen:</label>
+            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary mt-5">Actualizar producto</button>
+        </div>
+    </form>
+</div>
+{% endfor %}
+{% endblock %}

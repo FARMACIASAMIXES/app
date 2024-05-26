@@ -1,0 +1,43 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+<h2>Categorías</h2>
+<table class="table">
+    <thead><!-- CABECERA -->
+        <tr><!-- DEFINIR FILA -->
+            <th scope="col">ID Categoría</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Modificar</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for m in categorias_existentes %}
+        <tr>
+            <td>{{ m[0] }}</td>
+            <td>{{ m[1] }}</td>
+            <td>
+                <form action="/agregarCategoria?accion=editar" method="POST" class="d-inline">
+                    <input type="hidden" name="id_categoria" value="{{ m[0] }}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="nuevo_nombre" placeholder="Nuevo nombre" required>
+                        <button type="submit" class="btn btn-primary">Cambiar nombre</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="container mt-5">
+    <form action="/agregarCategoria?accion=agregar" method="POST">
+        <div class="form-group mb-3">
+            <label class="form-label" for="categoria">Agregar categoría:</label>
+            <input type="text" class="form-control" name="categoria" id="categoria" placeholder="Ingresa la categoría" required>
+        </div>
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

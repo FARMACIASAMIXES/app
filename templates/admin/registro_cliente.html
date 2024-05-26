@@ -1,0 +1,103 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+
+<div class="container p-5" >
+
+    <a href="/admin?ir=clientes">
+        <button class="btn btn-primary mb-3">Atrás</button>
+    </a>
+    <form class="needs-validation" action="/registrar?param=True" method="POST">
+        <div class="row g-3">
+            <!-- NOMBRE -->
+            <div class="col-sm-4">
+                <label for="Nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="Nombre"
+                    placeholder="Ingrese su nombre" name="nombre" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- APELLIDOS -->
+            <div class="col-sm-4">
+                <label for="Apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="Apellido"
+                    placeholder="Ingrese su apellido" name="apellidos" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- INICIO TIPO DE USUARIO -->
+            <!-- FIN TIPO DE USUARIO -->
+            
+            <div class="col-sm-4">
+                <label for="Edad" class="form-label">Tipo de usuario</label>
+                <select class="form-control" id="Edad" name="tipoUsuario">
+                    <option value="" disabled selected hidden>Ingresa su tipo</option>
+                    <option value="cliente">Cliente</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
+            
+            <!-- INICIO PAIS -->
+            <div class="col-sm-2">
+                <label for="Pais" class="form-label">Pais</label>
+                <input type="text" class="form-control" id="Pais" placeholder="Pais"
+                    name="pais" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- FIN PAIS -->
+            <!-- INICIO ESTADO -->
+            <div class="col-sm-2">
+                <label for="Estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="Estado" placeholder="Estado"
+                    name="estado" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- FIN ESTADO -->
+            <!-- INICIO DIRECCION -->
+            <div class="col-sm-8">
+                <label for="Direccion" class="form-label">Address</label>
+                <input type="text" class="form-control" id="Direccion"
+                    placeholder="Calle/Avenida No." name="direccion" required>
+                <div class="invalid-feedback">
+                    Please enter your shipping address.
+                </div>
+            </div>
+            <!-- FIN DIRECCION -->
+            <!-- INICIO CORREO -->
+            <div class="col-sm-4">
+                <label for="Correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="Correo"
+                    placeholder="correo@ejemplo.com" name="correo" required>
+                <div class="invalid-feedback">
+                    Ingresa un correo valido
+                </div>
+            </div>
+            <!-- FIN CORREO -->
+            <!-- INICIO CONTRASEÑA -->
+            <div class="col-sm-8">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="contraseña"
+                    placeholder="Introduce tu contraseña" required>
+                    <div class="invalid-feedback">
+                        Ingresa la contraseña
+                    </div>
+                
+            </div>
+            <!-- FIN CONTRASEÑA -->
+    
+            <input type="submit" class="w-80 btn btn-primary btn-lg" value="Registrar">
+    
+        </div>
+    
+        <!-- <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="inicio()">Continue to checkout</button> -->
+    
+    </form>
+</div>
+<!-- FIN DEL FORMULARIO -->
+{% endblock %}

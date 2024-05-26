@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block pedidos %}
+{% if log == True %}
+<li><a href="/cliente?ir=pedidos" class="nav-link px-2 link-body-emphasis">Pedidos</a></li>
+{% else %}
+
+{% endif %}
+{% endblock %}
+
+{% block sesion %}
+    {% if log == False %}
+    <div class="text-center ms-3">
+    <a href="/cliente?ir=login" class="btn btn-light">Iniciar Sesion</a>
+    </div>
+    {% else %}
+    <div class="text-center ms-3">
+    <a href="/logout" class="btn btn-light">Cerrar Sesion</a>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block cuenta_productos %}
+    {% if numero_productos %}
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{numero_productos}}
+        <span class="visually-hidden">unread messages</span></span>
+    {% else %}
+    {% endif %}
+{% endblock %}
+
+{% block categorias %}
+<li class="nav-item dropdown">
+    <a class="nav-link px-2 link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+        aria-expanded="false">Categorias</a>
+    <ul class="dropdown-menu">
+        <li>
+            {% for cat in data %}
+
+            <a class='dropdown-item' href="/buscar_por_categoria?cat={{ cat[1] }}">{{ cat[1] }}</a>
+
+            {% endfor %}
+        </li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block cambio %}
+<div class="container ">
+    <h1 class="text-center">Quiénes Somos</h1>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2>Misión</h2>
+            <p>Nuestra misión en Farmcias Amixes es proporcionar soluciones farmacéuticas avanzadas y
+                accesibles para abordar las necesidades médicas no cubiertas y mejorar la calidad de
+                vida de los pacientes en todo el mundo.</p>
+            <h2>Valores</h2>
+            <ul>
+                <li><strong>Integridad:</strong> Nos comprometemos a actuar con honestidad,
+                    transparencia y ética en todas nuestras actividades.</li>
+                <li><strong>Innovación:</strong> Buscamos constantemente nuevas formas de abordar
+                    desafíos médicos y mejorar la salud humana a través de la innovación científica y
+                    tecnológica.</li>
+                <li><strong>Calidad:</strong> Nos esforzamos por ofrecer productos y servicios de la más
+                    alta calidad, cumpliendo con los estándares regulatorios más exigentes.</li>
+                <li><strong>Compromiso:</strong> Estamos comprometidos con el bienestar de nuestros
+                    pacientes, socios comerciales y empleados, y nos esforzamos por superar las
+                    expectativas en todo lo que hacemos.</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>Operaciones</h2>
+                <p class="text-justify">En Farmacias Amixes, operamos en todas las etapas del proceso farmacéutico, desde la
+                    investigación y el desarrollo preclínico hasta la producción y distribución de
+                    medicamentos de calidad.</p>
+                <p class="text-justify">Nuestro enfoque en la innovación nos ha permitido desarrollar una cartera diversificada
+                    de productos en áreas terapéuticas clave, incluyendo oncología, enfermedades
+                    cardiovasculares, enfermedades infecciosas y trastornos neurológicos.</p>
+            <h2>Dirección</h2>
+            <p>Farmacias Amixes S.A. de C.V.<br>Av. del Bosque No. 1234, Col. El Pinar<br>Ciudad de México,
+                CDMX, México</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15054.969559025925!2d-99.06320571899414!3d19.38030404532654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fd0614558e4b%3A0x3760847a107a0b9f!2sTecNM%20%7C%20Tecnol%C3%B3gico%20Nacional%20de%20M%C3%A9xico%20Campus%20Iztapalapa!5e0!3m2!1ses-419!2smx!4v1715638914930!5m2!1ses-419!2smx" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

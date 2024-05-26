@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+
+
+{% block categorias %}
+<li class="nav-item dropdown">
+    <a class="nav-link px-2 link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+        aria-expanded="false">Categorias</a>
+    <ul class="dropdown-menu">
+        <li>
+            {% for cat in data %}
+
+            <a class='dropdown-item' href="/buscar_por_categoria?cat={{ cat[1] }}">{{ cat[1] }}</a>
+
+            {% endfor %}
+        </li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block cuenta_productos %}
+{% if numero_productos %}
+<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{numero_productos}}
+    <span class="visually-hidden">unread messages</span></span>
+{% else %}
+{% endif %}
+{% endblock %}
+
+{% block pedidos %}
+{% if log == True %}
+<li><a href="/cliente?ir=pedidos" class="nav-link px-2 link-body-emphasis">Pedidos</a></li>
+{% else %}
+
+{% endif %}
+{% endblock %}
+
+{% block sesion %}
+{% if log == False %}
+<div class="text-center ms-3">
+    <a href="/cliente?ir=login" class="btn btn-light">Iniciar Sesion</a>
+</div>
+{% else %}
+<div class="text-center ms-3">
+    <a href="/logout" class="btn btn-light">Cerrar Sesion</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block cambio %}
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename = 'img/oferta1.jpg') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename = 'img/oferta2.jpg') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename = 'img/oferta3.jpg') }}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- INICIO PRODUCTOS -->
+<div class="container pt-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <!-- INICIO TARJETA -->
+        {% for m in mostrarP %}
+        <div class="col">
+            <div class="card shadow-sm">
+                <img width="250" height="250" src="{{ url_for('static', filename='productosIMG/' + m[6]) }}"
+                    alt="{{ m[6] }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ m[2] }}</h5>
+                    <p class="card-text">$ {{ m[4] }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+
+                            <a href="{{ url_for('detalles_producto', id_producto = m[0]) }}"
+                                class="btn btn-primary">Detalles</a>
+                        </div>
+                        {% if m[5] == 0 %}
+                        {% else %}
+                        <a href="{{ url_for('agregar_carrito', producto_id = m[0]) }}"
+                            class="btn btn-success">Agregar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+        <!-- FIN TARJETA -->
+
+    </div>
+</div>
+
+<!-- Agrega un script después de cargar la biblioteca de Bootstrap -->
+
+
+
+<!-- FIN PRODUCTOS -->
+
+{% endblock %}

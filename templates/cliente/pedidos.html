@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block pedidos %}
+{% if log == True %}
+<li><a href="/cliente?ir=pedidos" class="nav-link px-2 link-body-emphasis">Pedidos</a></li>
+{% else %}
+
+{% endif %}
+{% endblock %}
+
+{% block sesion %}
+{% if log == False %}
+<div class="text-center ms-3">
+    <a href="/cliente?ir=login" class="btn btn-light">Iniciar Sesion</a>
+</div>
+{% else %}
+<div class="text-center ms-3">
+    <a href="/logout" class="btn btn-light">Cerrar Sesion</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block cuenta_productos %}
+{% if numero_productos %}
+<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{numero_productos}}
+    <span class="visually-hidden">unread messages</span></span>
+{% else %}
+{% endif %}
+{% endblock %}
+
+{% block categorias %}
+<li class="nav-item dropdown">
+    <a class="nav-link px-2 link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+        aria-expanded="false">Categorias</a>
+    <ul class="dropdown-menu">
+        <li>
+            {% for cat in data %}
+
+            <a class='dropdown-item' href="/buscar_por_categoria?cat={{ cat[1] }}">{{ cat[1] }}</a>
+
+            {% endfor %}
+        </li>
+    </ul>
+</li>
+{% endblock %}
+
+
+
+{% block cambio %}
+<div class="container">
+    <h1>Mis Pedidos</h1>
+    {% if pedidos %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div id="flash-messages">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" role="alert">
+            {{ message|safe }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="row">
+        {% for pedido, detalles in pedidos %}
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Número de pedido: {{ pedido[0] }}</h5>
+                    <p class="card-text">Fecha: {{ pedido[2] }}</p>
+                    <p class="card-text">Estado: {{ pedido[3] }}</p>
+                    <p class="card-text">Total: ${{ pedido[4] }}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Productos:</h6>
+                    <ul>
+                        {% for detalle in detalles %}
+                        <li>{{ detalle[0] }} - Cantidad: {{ detalle[1] }} - Precio unitario: ${{ detalle[2] }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ url_for('cancelar_pedido', pedido_id=pedido[0]) }}" class="btn btn-danger">Cancelar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No hay pedidos disponibles.</p>
+    {% endif %}
+</div>
+{% endblock %}

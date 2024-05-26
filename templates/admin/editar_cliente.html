@@ -1,0 +1,87 @@
+{% extends 'admin/layoutAdmin.html' %}
+
+{% block cambioAdmin %}
+
+<div class="container p-5" >
+
+    <a href="/admin?ir=clientes">
+        <button class="btn btn-primary mb-3">Atrás</button>
+    </a>
+    <form class="needs-validation" action="/actualizar_cliente" method="POST" novalidate>
+        <div class="row g-3">
+            <!-- NOMBRE -->
+            <div class="col-sm-4">
+                <label for="Nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="Nombre" placeholder="Ingrese su nombre" name="nombre" value="{{ clientes[1] }}" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- APELLIDOS -->
+            <div class="col-sm-4">
+                <label for="Apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="Apellido" placeholder="Ingrese su apellido" name="apellidos" value="{{ clientes[2] }}" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- TIPO DE USUARIO -->
+            <div class="col-sm-4">
+                <label for="TipoUsuario" class="form-label">Tipo de usuario</label>
+                <select class="form-control" id="TipoUsuario" name="tipoUsuario" required>
+                    <option value="" disabled selected hidden>Ingresa su tipo</option>
+                    <option value="cliente" {% if clientes[5] == 'cliente' %}selected{% endif %}>Cliente</option>
+                    <option value="admin" {% if clientes[5] == 'administrador' %}selected{% endif %}>Administrador</option>
+                </select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- PAIS -->
+            <div class="col-sm-2">
+                <label for="Pais" class="form-label">Pais</label>
+                <input type="text" class="form-control" id="Pais" placeholder="Pais" name="pais" value="{{ clientes[9] }}" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- ESTADO -->
+            <div class="col-sm-2">
+                <label for="Estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="Estado" placeholder="Estado" name="estado" value="{{ clientes[8] }}" required>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+            <!-- DIRECCION -->
+            <div class="col-sm-8">
+                <label for="Direccion" class="form-label">Address</label>
+                <input type="text" class="form-control" id="Direccion" placeholder="Calle/Avenida No." name="direccion" value="{{ clientes[6] }}" required>
+                <div class="invalid-feedback">
+                    Please enter your shipping address.
+                </div>
+            </div>
+            <!-- CORREO -->
+            <div class="col-sm-4">
+                <label for="Correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="Correo" placeholder="correo@ejemplo.com" name="correo" value="{{ clientes[3] }}" required>
+                <div class="invalid-feedback">
+                    Ingresa un correo valido
+                </div>
+            </div>
+            <!-- CONTRASEÑA -->
+            <div class="col-sm-8">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="contraseña" placeholder="Introduce tu contraseña" required>
+                <div class="invalid-feedback">
+                    Ingresa la contraseña
+                </div>
+            </div>
+            <input type="hidden" name="id_usuario" value="{{ clientes[0] }}">
+            <input type="submit" class="w-80 btn btn-primary btn-lg" value="Guardar cambios">
+        </div>
+    </form>
+    
+</div>
+<!-- FIN DEL FORMULARIO -->
+{% endblock %}

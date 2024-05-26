@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'core_bootstrap/bootstrap.min.css') }}">
+    <title>Farmacias Amixes</title>
+</head>
+
+<body style="background-color: beige;">
+    <!-- INICIO HEADER -->
+    <header class="bg-info p-3 mb-3 border-bottom">
+        <div class="container">
+            <a href="/admin?ir=inicio" class="d-flex align-items-center text-dark text-decoration-none">
+                <img src="{{url_for('static', filename = 'img/Logo.png')}}" alt="" width="100px" height="100px">
+                <h1 class="">FARMACIAS <br> AMIXES</h1>
+            </a>
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <!-- <li><a id="irInicio" href="./Controlador/Modulos.php?mostrar=principal" class="nav-link px-2 link-body-emphasis">Inicio</a></li> -->
+                    <li><a id="irInicio" href="/admin?ir=inicio" class="nav-link px-2 link-body-emphasis">Inicio</a>
+                    </li>
+                    <li><a href="/admin?ir=productos" class="nav-link px-2 link-body-emphasis">Productos</a></li>
+                    <li><a href="/admin?ir=agregarCategoria" class="nav-link px-2 link-body-emphasis">Categorias</a></li>
+                    <li><a href="/admin?ir=clientes" class="nav-link px-2 link-body-emphasis">Clientes</a></li>
+                    <li><a href="/admin?ir=pedidos" class="nav-link px-2 link-body-emphasis">Pedidos</a></li>
+                </ul>
+
+
+                <div class="text-center ms-3">
+                    <a href="/logout" class="btn btn-light">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- FIN HEADER -->
+
+    <!-- INICIO CAMBIO DE VENTANAS DEL ADMIN -->
+    {% block cambioAdmin %}
+    {% endblock %}
+    <!-- FIN CAMBIO DE VENTANAS DEL ADMIN -->
+    <!-- INCIO FOOTER -->
+    <div class="container">
+        <hr class="my-4">
+
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/admin?ir=inicio" class="nav-link px-2 text-body-secondary">Inicio</a>
+                </li>
+                <li class="nav-item"><a href="/admin?ir=inicio"
+                        class="nav-link px-2 text-body-secondary">Nosotros</a></li>
+
+                <li class="nav-item"><a href="https://www.facebook.com/" target="_blank"
+                        class="nav-link px-2 text-body-secondary">Facebook</a>
+                </li>
+                <li class="nav-item"><a href="https://twitter.com/?lang=es" target="_blank"
+                        class="nav-link px-2 text-body-secondary">X
+                        (twitter)</a></li>
+
+
+                <li class="nav-item"><a href="tel:+1234567890" class="nav-link px-2 text-body-secondary">Teléfono: +52
+                        (55) 456-7890</a></li>
+                <li class="nav-item"><a href="mailto:infofarmaciasamixes@gmail.com@gmail.com"
+                        class="nav-link px-2 text-body-secondary">infofarmaciasamixes@gmail.com</a></li>
+
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2024 <strong>Farmacias Amixes</strong>, Inc <br>Farmacias
+                Amixes S.A. de C.V.<br>Av. del Bosque No. 1234, Col. El Pinar<br>Ciudad de México,
+                CDMX, México</p>
+        </footer>
+    </div>
+    
+    <!-- FIN FOOTER -->
+
+    <!-- INICIO SCRIPTS -->
+    <script src="{{ url_for('static', filename = 'core_bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'core_bootstrap/checkout.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'core_bootstrap/snippets.js') }}"></script>
+    <!-- FIN SCRIPTS -->
+</body>
+
+</html>
